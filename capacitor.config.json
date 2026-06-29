@@ -1,0 +1,11 @@
+{
+  "appId": "com.managerguidebook.app",
+  "appName": "کتابچه مدیران",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#1a3a5c"
+  }
+}

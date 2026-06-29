@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1a3a5c">
+  <title>کتابچه راهنمای مدیران</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #1a3a5c;
+      --primary-light: #2d6a8a;
+      --primary-bg: #e3f0fb;
+      --green: #1a6b3c;
+      --green-bg: #e3f5ec;
+      --amber: #8a5c00;
+      --amber-bg: #fef3e2;
+      --red: #8a1f1f;
+      --red-bg: #fde8e8;
+      --purple: #4a2d8a;
+      --purple-bg: #ede8fc;
+      --surface: #ffffff;
+      --surface-1: #f5f7fa;
+      --surface-2: #eef1f6;
+      --text: #1a1a2e;
+      --text-sec: #4a5568;
+      --text-muted: #718096;
+      --border: rgba(0,0,0,0.08);
+      --radius: 14px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+      background: var(--surface-1);
+      color: var(--text);
+      direction: rtl;
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior: none;
+    }
+
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface-1);
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      padding: 48px 20px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .header-inner { position: relative; z-index: 1; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px; padding: 4px 14px;
+      font-size: 12px; color: rgba(255,255,255,0.9);
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      color: #fff; font-size: 21px; font-weight: 700;
+      line-height: 1.5; margin-bottom: 6px;
+    }
+    .header p { color: rgba(255,255,255,0.75); font-size: 13px; }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+    .nav-tab {
+      flex: 1; padding: 13px 6px;
+      font-size: 12px; font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      cursor: pointer; text-align: center;
+      transition: all 0.2s; white-space: nowrap;
+      font-family: 'Vazirmatn', Tahoma, sans-serif;
+    }
+    .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+    /* CONTENT */
+    .content { flex: 1; padding: 16px; overflow-y: auto; }
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* CARDS */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .card-img {
+      width: 100%; height: 110px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
+    }
+    .card-body { padding: 14px 16px 16px; }
+    .card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 7px; line-height: 1.5; }
+    .card-text { font-size: 13px; color: var(--text-sec); line-height: 1.9; }
+
+    /* BADGES */
+    .badge {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      padding: 3px 12px; border-radius: 20px; margin-bottom: 9px;
+    }
+    .badge-blue { background: var(--primary-bg); color: var(--primary); }
+    .badge-green { background: var(--green-bg); color: var(--green); }
+    .badge-amber { background: var(--amber-bg); color: var(--amber); }
+    .badge-red { background: var(--red-bg); color: var(--red); }
+    .badge-purple { background: var(--purple-bg); color: var(--purple); }
+
+    /* STATS */
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .stat-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 16px; text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .stat-num { font-size: 28px; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+
+    /* INTRO BANNER */
+    .intro-banner {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: var(--radius);
+      padding: 18px; color: white; margin-bottom: 16px;
+    }
+    .intro-banner h2 { font-size: 16px; font-weight: 700; margin-bottom: 7px; }
+    .intro-banner p { font-size: 13px; opacity: 0.85; line-height: 1.8; }
+
+    /* QUOTE */
+    .quote-box {
+      border-right: 4px solid var(--primary);
+      background: var(--primary-bg);
+      border-radius: 0 10px 10px 0;
+      padding: 13px 16px; margin: 14px 0;
+    }
+    .quote-box p { font-size: 13px; color: var(--primary); line-height: 1.9; font-style: italic; font-weight: 600; }
+
+    /* SECTION TITLE */
+    .sec-title {
+      font-size: 15px; font-weight: 700; color: var(--text);
+      margin: 18px 0 11px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* BULLET LIST */
+    .blist { list-style: none; }
+    .blist li {
+      font-size: 13px; color: var(--text-sec);
+      line-height: 1.9; padding: 5px 0;
+      display: flex; gap: 9px; align-items: flex-start;
+      border-bottom: 1px solid var(--border);
+    }
+    .blist li:last-child { border-bottom: none; }
+    .blist li::before { content: '◈'; color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+
+    /* KANDO */
+    .kando {
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .kando-head {
+      padding: 14px 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .kando-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+    }
+    .kando-name { font-size: 15px; font-weight: 700; color: var(--text); }
+    .kando-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .kando-body {
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border);
+    }
+    .kando-body > *:first-child { margin-top: 12px; }
+
+    /* WARNING BOX */
+    .warn-box {
+      background: var(--red-bg);
+      border-radius: 10px;
+      padding: 11px 14px; margin-top: 12px;
+    }
+    .warn-box p { color: var(--red); font-size: 13px; font-weight: 700; }
+
+    /* BOTTOM SAFE AREA */
+    .safe-bottom { height: 24px; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <div class="header">
+    <div class="header-inner">
+      <div class="header-badge">📚 ویرایش ۱۴۰۳</div>
+      <h1>کتابچه راهنمای مدیران شعب</h1>
+      <p>تدوین‌شده توسط مهندس سعیدی</p>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-tab active" onclick="show('home',0)">🏠 خانه</div>
+    <div class="nav-tab" onclick="show('manager',1)">👔 مدیر</div>
+    <div class="nav-tab" onclick="show('kando',2)">🍯 کندوها</div>
+    <div class="nav-tab" onclick="show('staff',3)">👥 پرسنل</div>
+  </nav>
+
+  <div class="content">
+
+    <!-- HOME -->
+    <div class="section active" id="home">
+      <div class="intro-banner">
+        <h2>🌟 خوش آمدید</h2>
+        <p>این کتابچه مرجع اصلی مدیران و سرپرستان شعب در مسیر موفقیت و رشد سازمانی است.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">۴</div>
+          <div class="stat-label">کندوی اصلی</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">۲۵+</div>
+          <div class="stat-label">اصل مدیریتی</div>
+        </div>
+      </div>
+
+      <div class="sec-title">🎯 اصول بنیادین</div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#e3f0fb,#b8d8f0);">🌿</div>
+        <div class="card-body">
+          <span class="badge badge-blue">سفارت برند</span>
+          <div class="card-title">مدیر شعبه، سفیر برند ماست!</div>
+          <div class="card-text">مدیر شعبه با رفتار، کلام و ظاهرش پیام برند را به مشتری منتقل می‌کند. سفیر قابلی باشید!</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#e3f5ec,#a8e0c0);">🤝</div>
+        <div class="card-body">
+          <span class="badge badge-green">احترام متقابل</span>
+          <div class="card-title">احترام می‌گذارد، احترام می‌خرد</div>
+          <div class="card-text">مدیر شعبه در همه شرایط با آرامش رفتار می‌کند و فرهنگ احترام را در شعبه نهادینه می‌سازد.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#fef3e2,#fad799);">💡</div>
+        <div class="card-body">
+          <span class="badge badge-amber">الهام‌بخشی</span>
+          <div class="card-title">منبع الهام و انگیزه پرسنل</div>
+          <div class="card-text">مدیر شعبه با کلام، رفتار و برخوردش الگوی تیم خود است و انگیزه را در گروه زنده نگه می‌دارد.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#ede8fc,#c9baed);">🧠</div>
+        <div class="card-body">
+          <span class="badge badge-purple">مدیریت با نبوغ</span>
+          <div class="card-title">همه بحران‌ها قابل حل هستند</div>
+          <div class="card-text">مدیر شعبه تمام بحران‌ها را با جمله «چگونه حلش کنم؟» مدیریت می‌کند. مدیریت، نبوغ است!</div>
+        </div>
+      </div>
+
+      <div class="quote-box">
+        <p>«فروش راحت‌ترین کار دنیاست و با همت گروهی به دست می‌آید.»</p>
+      </div>
+      <div class="safe-bottom"></div>
+    </div>
+
+    <!-- MANAGER -->
+    <div class="section" id="manager">
+      <div class="sec-title">📋 وظایف و مهارت‌های مدیر شعبه</div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#e3f0fb,#a8cde8);">🎓</div>
+        <div class="card-body">
+          <span class="badge badge-blue">آموزش و توسعه</span>
+          <div class="card-title">توسعه سرمایه انسانی</div>
+          <div class="card-text">مدیر شعبه آموزش می‌دهد و سرمایه انسانی مجموعه را افزایش می‌دهد. نیروهای خوب و آموزش‌پذیر را ارج می‌نهد و برای دیده شدنشان تلاش می‌کند.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#fde8e8,#f5a8a8);">🔍</div>
+        <div class="card-body">
+          <span class="badge badge-red">نظارت روزانه</span>
+          <div class="card-title">سرکشی به تمام نقاط فروشگاه</div>
+          <div class="card-text">مدیر شعبه باید روزانه تا صد مرتبه به تمام نقاط، لاین‌ها، انبار و محیط فروشگاه سرکشی کند.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#e3f5ec,#9fd8bf);">📊</div>
+        <div class="card-body">
+          <span class="badge badge-green">تحلیل داده</span>
+          <div class="card-title">تحلیل آمار و اطلاعات</div>
+          <div class="card-text">آمار، اطلاعات و داده‌ها را تحلیل کرده و به پرسنل انتقال می‌دهد. تارگت روزانه، هفتگی و ماهانه را می‌داند و پیگیری می‌کند.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#fef3e2,#f5c878);">🏆</div>
+        <div class="card-body">
+          <span class="badge badge-amber">رشد مستمر</span>
+          <div class="card-title">هر روز بهتر از دیروز</div>
+          <div class="card-text">مدیر شعبه می‌داند که ضعف‌هایش عیب هایش نیست. یادگیری را ادامه می‌دهد و در انتهای هر روز به خودش امتیاز می‌دهد.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#ede8fc,#c9baed);">🙏</div>
+        <div class="card-body">
+          <span class="badge badge-purple">فرهنگ سازمانی</span>
+          <div class="card-title">اصل سپاس‌گذاری</div>
+          <div class="card-text">مدیر شعبه در همه حال قدردان است و اصل سپاس‌گذاری را آموزش و اجرا می‌نماید. در خفا تذکر می‌دهد و در جمع تشویق می‌کند.</div>
+        </div>
+      </div>
+
+      <div class="sec-title">⭐ ویژگی‌های کلیدی</div>
+      <div class="card">
+        <div class="card-body">
+          <ul class="blist">
+            <li>گوش شنوا دارد و فرهنگ عذرخواهی را بلد است</li>
+            <li>در همه شرایط محترم و آرام رفتار می‌کند</li>
+            <li>سلسله مراتب را می‌داند و به پرسنل آموزش می‌دهد</li>
+            <li>مشتری را ولی نعمت می‌داند</li>
+            <li>با تمام وجود سر کار حاضر می‌شود</li>
+            <li>وظایف خود را لیست کرده و پیگیری می‌کند</li>
+            <li>نیروها او را نقطه امن خود می‌دانند</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-box">
+        <p>«مدیریت، نبوغ است و مدیر حتماً در زمینه‌ای نابغه است!»</p>
+      </div>
+      <div class="safe-bottom"></div>
+    </div>
+
+    <!-- KANDO -->
+    <div class="section" id="kando">
+      <div class="sec-title">🍯 کندوهای اصلی</div>
+
+      <div class="kando">
+        <div class="kando-head">
+          <div class="kando-icon" style="background:#e3f0fb;">🔒</div>
+          <div>
+            <div class="kando-name">کندو شماره یک</div>
+            <div class="kando-sub">رازداری و عدم اشاعه مطالب</div>
+          </div>
+        </div>
+        <div class="kando-body">
+          <p style="font-size:13px;color:var(--text-sec);line-height:1.9;">اطلاعات مجموعه، جزو مهم‌ترین المان‌های پیشرفت می‌باشد. از در اختیار گذاشتن آن با رقبا خودداری کنید. اطلاعات داخلی محرمانه است و حفاظت از آن وظیفه هر عضو تیم است.</p>
+        </div>
+      </div>
+
+      <div class="kando">
+        <div class="kando-head">
+          <div class="kando-icon" style="background:#e3f5ec;">🤲</div>
+          <div>
+            <div class="kando-name">کندو شماره دو</div>
+            <div class="kando-sub">امانت‌داری و مسئولیت‌پذیری</div>
+          </div>
+        </div>
+        <div class="kando-body">
+          <p style="font-size:13px;color:var(--text-sec);line-height:1.9;">اموال و اجناس داخل فروشگاه را همچون اموال خود دانسته و از آسیب رساندن به اموال و دزدبری اجناس جلوگیری می‌کنیم. با رعایت این اصل، پاداش نیز می‌گیریم.</p>
+        </div>
+      </div>
+
+      <div class="kando">
+        <div class="kando-head">
+          <div class="kando-icon" style="background:#fef3e2;">🚗</div>
+          <div>
+            <div class="kando-name">کندو شماره سه</div>
+            <div class="kando-sub">پارکبان</div>
+          </div>
+        </div>
+        <div class="kando-body">
+          <ul class="blist">
+            <li>داشتن لباس فرم تمیز و نظافت همیشگی پیاده‌روها</li>
+            <li>نداشتن و نشان ندادن تمایل به گرفتن انعام از مشتری</li>
+            <li>مراقبت از ماشین‌ها و نظارت بر پارک کردن آن‌ها</li>
+            <li>صدا کردن مشتریان فقط با دیالوگ «آقا/خانم محترم»</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="kando">
+        <div class="kando-head">
+          <div class="kando-icon" style="background:#ede8fc;">💳</div>
+          <div>
+            <div class="kando-name">کندو شماره چهار</div>
+            <div class="kando-sub">صندوقداران</div>
+          </div>
+        </div>
+        <div class="kando-body">
+          <ul class="blist">
+            <li>داشتن ظاهر مناسب: لباس فرم تمیز، بدن و دهان خوشبو</li>
+            <li>نظافت روزانه محیط صندوق</li>
+            <li>احترام به مشتریان: بلند شدن از صندلی، لبخند و خوش‌آمدگویی</li>
+            <li>دو دستی تقدیم کردن فاکتور و رسید به مشتری</li>
+            <li>حفظ فاصله شخصی و گوش دادن به مسائل مشتریان</li>
+            <li>داشتن زبان بدن مناسب در زمان گفتگو</li>
+            <li>کمک به افزایش فروش با پرزنت قوی محصولات</li>
+            <li>صدا زدن مشتری فقط با دیالوگ «آقا/خانم محترم»</li>
+          </ul>
+          <div class="warn-box">
+            <p>⚠️ بوی سیگار، رفتار نامناسب و ناهنجاری = اخراج</p>
+          </div>
+        </div>
+      </div>
+      <div class="safe-bottom"></div>
+    </div>
+
+    <!-- STAFF -->
+    <div class="section" id="staff">
+      <div class="sec-title">👥 راهنمای پرسنل</div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#ede8fc,#c9baed);">✨</div>
+        <div class="card-body">
+          <span class="badge badge-purple">ظاهر و نظافت</span>
+          <div class="card-title">نظافت ظاهری، مهم‌ترین عامل پیشرفت</div>
+          <div class="card-text">نظافت ظاهری مدیر و پرسنل شعبه، مهم‌ترین عامل جهت پیشرفت شعبه می‌باشد. لباس فرم تمیز الزامی است.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#e3f5ec,#9fd8bf);">🛒</div>
+        <div class="card-body">
+          <span class="badge badge-green">خدمات مشتری</span>
+          <div class="card-title">مشتری ولی نعمت است</div>
+          <div class="card-text">در همه شرایط حق با مشتری است. باید تمام مشتریان چرخ خرید داشته باشند و تمام پرسنل بتوانند به ایشان چرخ دهند.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#fef3e2,#f5c878);">📦</div>
+        <div class="card-body">
+          <span class="badge badge-amber">مدیریت کالا</span>
+          <div class="card-title">تکنیک مرجوع نمودن کالا</div>
+          <div class="card-text">باید بهترین استفاده را از تکنیک مرجوع نمودن کالا نمود تا رضایت مشتری در هر شرایطی حفظ شود.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img" style="background:linear-gradient(135deg,#e3f0fb,#a8cde8);">🏛️</div>
+        <div class="card-body">
+          <span class="badge badge-blue">سلسله مراتب</span>
+          <div class="card-title">رعایت سلسله مراتب سازمانی</div>
+          <div class="card-text">مدیر شعبه سلسله مراتب را می‌داند و به بهترین شکل به پرسنل آموزش می‌دهد تا نظم سازمانی حفظ شود.</div>
+        </div>
+      </div>
+
+      <div class="sec-title">💬 نکات طلایی ارتباط با مشتری</div>
+      <div class="card">
+        <div class="card-body">
+          <ul class="blist">
+            <li>صدا زدن مشتری فقط با دیالوگ «آقا/خانم محترم»</li>
+            <li>لبخند سازمانی در تمام لحظات کاری</li>
+            <li>بلند شدن از جایگاه هنگام ورود مشتری</li>
+            <li>گوش دادن فعال به نیازها و مسائل مشتری</li>
+            <li>دو دستی ارائه دادن اسناد و مدارک به مشتری</li>
+            <li>حفظ فاصله شخصی مناسب در گفتگو</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-box">
+        <p>«نیروهای خوب را ارج بنهیم و برای دیده شدنشان تلاش کنیم.»</p>
+      </div>
+      <div class="safe-bottom"></div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /app -->
+
+<script>
+  var tabs = document.querySelectorAll('.nav-tab');
+  function show(id, idx) {
+    document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('active'); });
+    tabs.forEach(function(t){ t.classList.remove('active'); });
+    document.getElementById(id).classList.add('active');
+    tabs[idx].classList.add('active');
+    document.querySelector('.content').scrollTop = 0;
+  }
+</script>
+</body>
+</html>

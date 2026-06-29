@@ -1,0 +1,18 @@
+{
+  "name": "manager-guidebook",
+  "version": "1.0.0",
+  "description": "کتابچه راهنمای مدیران شعب",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'No build needed'",
+    "cap:init": "npx cap init",
+    "cap:add": "npx cap add android",
+    "cap:copy": "npx cap copy",
+    "cap:open": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.0.0",
+    "@capacitor/core": "^5.0.0",
+    "@capacitor/cli": "^5.0.0"
+  }
+}
